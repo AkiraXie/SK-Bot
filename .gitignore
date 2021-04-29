@@ -144,3 +144,5 @@ docker-compose.yml
 Dockerfile
 .vscode/
 logs/
+data/
+_demo/

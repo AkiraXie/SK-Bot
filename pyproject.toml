@@ -14,6 +14,7 @@ Pillow = "^8.0.1"
 pillow = "^8.2.0"
 nonebot-plugin-apscheduler = "^0.1.2"
 nonebot-adapter-cqhttp = "^2.0.0-alpha.12"
+haruka-bot = "^1.2.3"
 
 [tool.poetry.dev-dependencies]
 
