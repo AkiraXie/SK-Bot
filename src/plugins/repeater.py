@@ -25,7 +25,7 @@ async def repeat(bot: Bot, event: GroupMessageEvent):
             rec['repeated'] = True
     else:
         rec['message'] = event.message
-        rec['sender'] = bot.self_id
+        rec['sender'] = event.sender.user_id
         rec['repeated'] = False
 
 def raw_message(message):
