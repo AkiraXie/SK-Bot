@@ -21,8 +21,8 @@ async def repeat(bot: Bot, event: GroupMessageEvent):
     rec = recording[event.group_id]
     if raw_message(rec['message']) == raw_message(event.message):
         if not rec['repeated'] and rec['sender'] != event.sender.user_id:
-            await bot.send(event, rec['message'])
             rec['repeated'] = True
+            await bot.send(event, rec['message'])
     else:
         rec['message'] = event.message
         rec['sender'] = event.sender.user_id
