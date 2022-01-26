@@ -1,12 +1,11 @@
 import nonebot
-from nonebot.adapters.cqhttp import Bot
+from nonebot.adapters.onebot.v11 import Adapter
 from nonebot.log import default_format, logger
 
 
 nonebot.init()
 driver = nonebot.get_driver()
-driver.register_adapter('cqhttp', Bot)
-app = nonebot.get_asgi()
+driver.register_adapter(Adapter)
 
 
 nonebot.load_plugin('haruka_bot')

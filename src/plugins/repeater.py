@@ -1,39 +1,30 @@
 from collections import defaultdict
 
 from nonebot import on_message
-from nonebot.adapters.cqhttp import Bot, GroupMessageEvent
-from nonebot.adapters.cqhttp.message import Message
+from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent
 
 
 def default_recording():
     return {
-        'message': Message(),
+        'message': "",
         'repeated': False,
         'sender': 0
     }
+
 
 recording = defaultdict(default_recording)
 
 repeater = on_message(priority=20)
 
+
 @repeater.handle()
-async def repeat(bot: Bot, event: GroupMessageEvent):
+async def repeat(event: GroupMessageEvent):
     rec = recording[event.group_id]
-    if raw_message(rec['message']) == raw_message(event.message):
-        if not rec['repeated'] and rec['sender'] != event.sender.user_id:
+    if event.raw_message == rec["message"]:
+        if not rec['repeated'] and rec['sender'] != event.user_id:
             rec['repeated'] = True
-            await bot.send(event, rec['message'])
+            await repeater.send(event.get_message())
     else:
-        rec['message'] = event.message
-        rec['sender'] = event.sender.user_id
+        rec['message'] = event.raw_message
+        rec['sender'] = event.user_id
         rec['repeated'] = False
-
-def raw_message(message):
-    raw = ''
-    for segment in message:
-        if segment.type == 'image':
-            raw += segment.data['file']
-        else:
-            raw += str(segment)
-    return raw
-
