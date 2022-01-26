@@ -22,4 +22,4 @@ logger.add("logs/error.log",
 
 
 if __name__ == "__main__":
-    nonebot.run(app="bot:app")
+    nonebot.run()

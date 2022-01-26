@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 from nonebot import on_message
-from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent
+from nonebot.adapters.onebot.v11 import GroupMessageEvent
 
 
 def default_recording():
